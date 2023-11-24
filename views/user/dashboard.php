@@ -129,8 +129,7 @@ $total = 0;
 
     <center>
         <div style="text-align: center; margin-top: 20px;">
-            <!-- Corrigindo a classe do botão "Investir" para "button" -->
-            <a href="../login.php" class="button">Investir</a>
+            <a href="/_9_POO_MVC_Crowndfunding/views/user/dashboard.php" class="button">Investir</a>
         </div><br>
     </center>
 
@@ -160,10 +159,39 @@ $total = 0;
 
         // Função para atualizar o valor captado do projeto no banco de dados
         // Ao clicar em investir > Atualizar valores na coluna valor captado
-        function investir(investmentValue, id) {
-            // Adicione aqui a lógica para atualizar o valor captado no banco de dados
+        function investir(id) {
+            // Obtém o valor do investimento
+            var investmentValue = parseFloat(document.getElementById("investmentValue" + id).value);
+            atualizarValorCaptado(id, investmentValue);
+    }
 
-        }
+        // Função para atualizar o valor captado no banco de dados
+        // function atualizarValorCaptado(id, investmentValue) {
+        //     fetch('/caminho-para-seu-backend/atualizar-valor-captado.php', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             id: id,
+        //             investmentValue: investmentValue,
+        //         }),
+        //     })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             // Se tudo correr bem, atualize o valor na interface do usuário
+        //             if (data.success) {
+        //                 // Atualiza o valor captado na célula correspondente na tabela
+        //                 document.getElementById("valorCaptado" + id).innerText = "R$ " + data.newRaisedAmount.toFixed(2);
+        //             } else {
+        //                 // Exibe uma mensagem de erro se a atualização falhar
+        //                 alert("Erro ao atualizar o valor captado: " + data.message);
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.error('Erro ao atualizar o valor captado:', error);
+        //         });
+        // }
     </script>
 </body>
 
