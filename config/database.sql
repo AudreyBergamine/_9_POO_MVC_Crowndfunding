@@ -1,3 +1,5 @@
+-- teste
+
 -- Criação do banco de dados
 CREATE DATABASE IF NOT EXISTS crowdfunding_db; 
 USE crowdfunding_db;
