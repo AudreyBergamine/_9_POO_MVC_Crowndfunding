@@ -59,6 +59,15 @@ class Project {
         return "$dia/$mes/$ano";
     }
 
+    public function getDeadlineEUA() {      
+        return $this->deadline;
+    }
+
+    public function ConvertDataBRtoEUA($data) {
+        [$dia, $mes, $ano] = explode("/",$data);
+        return "$mes-$dia-$ano";
+    }
+
 
     public function getFinancialGoal() {
         return $this->financial_goal;

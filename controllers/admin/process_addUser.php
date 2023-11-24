@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($existingUser) {
             // Usuário já existe, exiba uma mensagem de erro ou redirecione para a página de registro
-            $errorMessage = "Usuário já cadastrado!  Faça login para entrar! ";
+            $errorMessage = "Usuário já cadastrado!";
             echo '<script>';
             echo 'alert("' . $errorMessage . '");';
             echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/admin/listUsers.php";'; 

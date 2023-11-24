@@ -18,7 +18,7 @@ $projectIdToDelete = isset($_GET['id_project']) ? $_GET['id_project'] : null;
 // error_log("ID do projeto a ser excluído: " . $projectIdToDelete);
 
 // Se o ID do projeto foi fornecido
-if ($projectIdToDelete) {
+if ($projectIdToDelete) { // d
     $projectsDAO = new ProjectsDAO();
 
     // Recupera o projeto que você deseja excluir
@@ -31,7 +31,7 @@ if ($projectIdToDelete) {
         if ($deleteSuccess) {
             echo '<script>';
             echo 'alert("Projeto excluído com sucesso.");';
-            echo 'window.location.href = "listProjects.php";'; 
+            echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/admin/listProjects.php";'; 
             echo '</script>';
             exit();
         } else {

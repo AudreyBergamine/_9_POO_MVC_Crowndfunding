@@ -1,10 +1,10 @@
 <?php
 include_once(__DIR__ . "/../../DAO/ProjectsDAO.php");
 
-// var_dump($_POST); exit;
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $projectId = $_POST["projectId"];
+    $projectId = $_POST["id_project"];
     $editedName = $_POST["editedName"];
     $editedDescription = $_POST["editedDescription"];
     $editedState = $_POST["editedState"];
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $editedProfitability = $_POST["editedProfitability"];
     $editedDeadline = $_POST["editedDeadline"];
     $editedFinancialGoal = $_POST["editedFinancialGoal"];
-    
+    var_dump($projectId); 
 
     // Validar e processar os dados conforme necessário
 
@@ -27,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '6' => $editedDeadline,
         '7' => $editedFinancialGoal,
     ]);
-    var_dump($project); 
+    // var_dump($project); exit;
 
     $success = $projectsDAO->editProject($project);
 
 
-    var_dump($success); 
+    // var_dump($success); 
 
 
     if ($success) {

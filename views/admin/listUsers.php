@@ -33,7 +33,7 @@ $users = $userDAO->findAll();
         <h1>Cadastro de Usuário</h1>
 
         <!-- Formulário de registro -->
-        <form action="../admin/process_addUser.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
+        <form action="/_9_POO_MVC_Crowndfunding/controllers/admin/process_addUser.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
             <div style="margin-bottom: 10px;">
                 <label for="username" style="padding-right: 20px;">Nome de Usuário:</label>
                 <input type="text" id="username" name="username" required>
@@ -92,7 +92,7 @@ $users = $userDAO->findAll();
             <tbody>
                 <?php foreach ($users as $user): ?>
                     <?php if ($user->getId() > 1): ?>
-                        <form class="edit-field" id="editForm<?php echo $user->getId(); ?>" method="post" action="process_edit_user.php">
+                        <form class="edit-field" id="editForm<?php echo $user->getId(); ?>" method="post" action="/_9_POO_MVC_Crowndfunding/controllers/admin/process_edit_user.php">
                             <tr id="editTr<?php echo $user->getId(); ?>" >
 
                                 <td>
@@ -149,7 +149,7 @@ $users = $userDAO->findAll();
         </table><br>
     </center>
 
-    <!-- Botão para voltar ao painel de administração -->
+    <!-- Botão para voltar ao painel de administração --> 
     <center>
         <div style="text-align: center; margin-top: 20px;">
         <a href="../admin/dashboard.php" class="button2">Voltar</a>
@@ -209,7 +209,7 @@ $users = $userDAO->findAll();
     function deleteUser(userId) {
         var confirmDelete = confirm("Tem certeza de que deseja excluir este usuário?");
         if (confirmDelete) {
-            window.location.href = "process_delete_user.php?user_id=" + userId;
+            window.location.href = "/_9_POO_MVC_Crowndfunding/controllers/admin/process_delete_user.php?user_id=" + userId;
         }
     }
 </script>

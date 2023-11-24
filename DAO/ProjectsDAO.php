@@ -121,7 +121,7 @@ class ProjectsDAO {
             $state = $project->getState();
             $city = $project->getCity();
             $profitability = $project->getProfitability();
-            $deadline = $project->getDeadline();
+            $deadline = $project->getDeadlineEUA();
             $financialGoal = $project->getFinancialGoal();
     
             $pstm = $connection->prepare("UPDATE projects SET name=?, description=?, state=?, city=?, profitability=?, deadline=?, financial_goal=? WHERE id_project=?");

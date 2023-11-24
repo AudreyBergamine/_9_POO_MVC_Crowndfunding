@@ -4,6 +4,7 @@ include_once(__DIR__ . "/../../DAO/ProjectsDAO.php");
 
 $projectsDAO = new ProjectsDAO();
 $projects = $projectsDAO->findAll();
+$total = 0;
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,10 @@ $projects = $projectsDAO->findAll();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($projects as $project): ?>
+                <?php $i=1; ?>
+                <?php foreach ($projects as $project): 
+                    
+                    ?>
                     <tr>
                         <td style="text-align: center;">
                             <?php echo $project->getId(); ?>
@@ -101,7 +105,7 @@ $projects = $projectsDAO->findAll();
                             <center>
                                 <div style="display: flex;">
                                     <!-- Adicionando a text box para inserção do valor de investimento -->
-                                    <input type="text" id="investmentValue<?php echo $project->getId(); ?>" name="investmentValue" style="width: 80px;" placeholder="Digite o valor">
+                                    <input type="number" id="investmentValue<?php echo $i++;?>" name="investmentValue" class="input-grande" style="width: 110px; height: 30px;" placeholder="Digite o valor" oninput="atualizar()"> 
                                 </div>
                             </center>
                         </td>
@@ -110,6 +114,19 @@ $projects = $projectsDAO->findAll();
             </tbody>
         </table><br>
     </center>
+    
+    
+    <!-- Soma de todos os investimentos com atualização em tempo real -->
+    <div style="text-align: right; margin-right: 120px;">
+        <p style="margin: 0;">
+            <label id="valorTotal" style="margin-top: 20px; font-size: 22px;">
+                <?php echo "TOTAL:    R$  " . number_format($total, 2, ',', '.'); ?>
+            </label>
+        </p>
+    </div>
+
+
+
     <center>
         <div style="text-align: center; margin-top: 20px;">
             <!-- Corrigindo a classe do botão "Investir" para "button" -->
@@ -119,14 +136,34 @@ $projects = $projectsDAO->findAll();
 
     <center>
         <div style="text-align: center; margin-top: 20px;">
-            <a href="../login.php" class="button2">Sair</a>
+            <a href="../../index.php" class="button2">Sair</a>
         </div><br><br><br>
     </center>
 
     <?php include_once(__DIR__ . "/../../footer.php"); ?>
 
-    <script>
-        // Se houver algum script adicional, você pode adicionar aqui
+    <script>      
+
+        // Função para atualizar o valor Total (Soma de todo os investimentos)
+        function atualizar(investmentValue, id) {
+            let total = 0.0;
+            var i = 1;
+            while(true){
+                var elemento = document.getElementById("investmentValue"+i);
+                if(!elemento) break;              
+                if(elemento.value.length>0) total+=parseFloat(elemento.value);
+                i++;
+            }
+            // Atualiza a exibição do total
+            document.getElementById('valorTotal').innerText = "TOTAL: R$ " + total.toFixed(2);
+        }
+
+        // Função para atualizar o valor captado do projeto no banco de dados
+        // Ao clicar em investir > Atualizar valores na coluna valor captado
+        function investir(investmentValue, id) {
+            // Adicione aqui a lógica para atualizar o valor captado no banco de dados
+
+        }
     </script>
 </body>
 

@@ -34,8 +34,8 @@ $projects = $projectsDAO->findAll();
     <div id="camposCadastro" style="display: none;">
         <h1>Cadastro de Projeto</h1>
 
-        <!-- Formulário de registro -->
-        <form action="../admin/process_addProject.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
+        <!-- Formulário de registro --> 
+        <form action="/_9_POO_MVC_Crowndfunding/controllers/admin/process_addProject.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
         <table>
             <tr>
                 <td><label for="name">Nome:</label></td>
@@ -95,7 +95,7 @@ $projects = $projectsDAO->findAll();
                 <?php foreach ($projects as $project): ?>
 
                     <!-- Formulário de edição (inicialmente oculto) -->
-                    <form class="edit-field" id="editForm<?php echo $project->getId(); ?>" method="post" action="process_edit_project.php">
+                    <form class="edit-field" id="editForm<?php echo $project->getId(); ?>" method="post" action="/_9_POO_MVC_Crowndfunding/controllers/admin/process_edit_project.php">
                         <tr>
                             <td style="text-align: center;"> 
                                 <?php echo $project->getId(); ?>
@@ -141,7 +141,7 @@ $projects = $projectsDAO->findAll();
                                 <label id="prazo<?php echo $project->getId(); ?>">
                                 <?php echo $project->getDeadline(); ?>
                                 </label><br>
-                                <input type="date" id="editedDeadline<?php echo $project->getId();?>" name="editedDeadline" style="width: 90px; display: none;" value="<?php echo $project->getDeadline(); ?>"><br><br>
+                                <input type="date" id="editedDeadline<?php echo $project->getId();?>" name="editedDeadline" style="width: 90px; display: none;" value="<?php echo $project->getDeadlineEUA(); ?>"><br><br>
                             </td>
 
                             <td>
@@ -258,7 +258,7 @@ $projects = $projectsDAO->findAll();
     function deleteProject(id_project) {
         var confirmDelete = confirm("Tem certeza de que deseja excluir este Projeto?");
         if (confirmDelete) {
-            window.location.href = "process_delete_project.php?id_project=" + id_project;
+            window.location.href = "/_9_POO_MVC_Crowndfunding/controllers/admin/process_delete_project.php?id_project=" + id_project;
         }
     }
 

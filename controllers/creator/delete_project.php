@@ -31,7 +31,7 @@ if ($projectIdToDelete) { // d
         if ($deleteSuccess) {
             echo '<script>';
             echo 'alert("Projeto excluído com sucesso.");';
-            echo 'window.location.href = "listProjects.php";'; 
+            echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/creator/listarProjects.php";'; 
             echo '</script>';
             exit();
         } else {

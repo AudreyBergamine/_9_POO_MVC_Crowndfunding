@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST["financialGoal"]
     )) {
 
-        // Criar um array com os atributos na ordem específica
+        
         $projectAttributes = [
             null, // O ID será gerado automaticamente pelo banco de dados
             $_POST["name"],
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $successMessage = "Projeto cadastrado com sucesso!";
             echo '<script>';
             echo 'alert("' . $successMessage . '");';
-            echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/creator/listProjects.php";';
+            echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/creator/listarProjects.php";';
             echo '</script>';
         } else {
             echo "Erro ao cadastrar o projeto.";

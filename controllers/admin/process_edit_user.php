@@ -1,9 +1,9 @@
 <?php
 include_once(__DIR__ . "/../../DAO/UserDAO.php");
 
-echo "<pre>";
-print_r($_POST);
-echo "<pre>";
+// echo "<pre>";
+// print_r($_POST);
+// echo "<pre>";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userId = $_POST["userId"];
@@ -31,9 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $successMessage = "Edição realizada com Sucesso! ";
         echo '<script>';
         echo 'alert("' . $successMessage . '");';
-        // echo 'window.location.href = "\_9_POO_MVC_Crowndfunding\views\admin\listUsers copy.php";'; 
-        echo 'window.location.href = "listUsers copy.php"'; 
-
+        echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/admin/listUsers.php";';  
         echo '</script>';
     } else {
         echo "Erro ao editar o usuário.";

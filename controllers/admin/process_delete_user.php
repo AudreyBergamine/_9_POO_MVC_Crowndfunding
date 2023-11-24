@@ -27,7 +27,7 @@ if ($userIdToDelete) {
         if ($deleteSuccess) {
             echo '<script>';
             echo 'alert("Usuário excluído com sucesso.");';
-            echo 'window.location.href = "listUsers.php";';
+            echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/admin/listUsers.php";';  
             echo '</script>';
             exit();
         } else {

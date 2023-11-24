@@ -31,7 +31,7 @@ include_once(__DIR__ . "/../../header.php");
         </div>
         <center>
             <div style="text-align: center; margin-top: 0px;">
-                <a href="../login.php" class="button2" onclick="limparFormularios()">Sair</a>
+                <a href="../../index.php" class="button2" onclick="limparFormularios()">Sair</a>
             </div>
         </center>
 
