@@ -18,7 +18,7 @@ $projectIdToDelete = isset($_GET['id_project']) ? $_GET['id_project'] : null;
 // error_log("ID do projeto a ser excluído: " . $projectIdToDelete);
 
 // Se o ID do projeto foi fornecido
-if ($projectIdToDelete) {
+if ($projectIdToDelete) { // d
     $projectsDAO = new ProjectsDAO();
 
     // Recupera o projeto que você deseja excluir
