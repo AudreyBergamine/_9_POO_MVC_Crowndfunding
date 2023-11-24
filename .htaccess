@@ -1,0 +1,11 @@
+# .htaccess
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /projeto-crowdfunding/
+
+    # Redirecionar todas as solicitações para o arquivo index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)$ index.php?route=$1 [QSA,L]
+</IfModule>

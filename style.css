@@ -1,0 +1,371 @@
+/* public/css/style.css */
+
+body { 
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive; 
+    background-color: #dbdada;
+    max-height: 95vh; /* Define a altura máxima como 100% da altura da janela do navegador */
+    overflow-y: auto;  /* Adiciona uma barra de rolagem vertical quando o conteúdo exceder a altura máxima */
+    
+}
+
+.header {
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(132, 31, 158);   
+}
+
+
+.footer {
+    background-color: rgb(132, 31, 158);   
+    color: white;
+    padding: 0px 0; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 12px; /* Tamanho da letra */
+}
+
+.footer .container {
+    background-color: rgb(132, 31, 158);   
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas de largura igual */
+    grid-template-rows: repeat(2, 1fr); /* 2 linhas de altura igual */
+    gap: 20px; /* Espaçamento entre as linhas das caixas */
+    grid-column-gap: 0px; /* Espaçamento entre as colunas */
+    justify-content: center; /* Centraliza as caixas horizontalmente */
+    align-items: center; /* Centraliza as caixas verticalmente */
+    height: 50vh; /* Ajuste conforme necessário para ocupar a altura desejada */
+    padding: 40px; /* Adiciona um espaçamento ao redor das caixas */
+
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;  */
+}
+
+.box {
+    width: 200px;
+    height: 90px;
+    background-color: rgb(132, 31, 158);
+    color: white;
+    text-align: center;
+    line-height: 90px; /* Centraliza verticalmente o texto */
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease-in-out;
+    padding: 5px; /* Ajusta o espaçamento interno das caixas */
+    margin-left: 100px; /* Adiciona uma margem à esquerda */
+}
+
+.box:hover {
+    background-color: #6a156e; /* Tonalidade roxa mais escura no hover */
+}
+
+.box a {
+    color: white; /* Cor do texto do link */
+    text-decoration: none; /* Remove a sublinhado padrão do link */
+}
+
+
+table{
+    padding-top: 0%;
+    border-collapse: separate;
+    border-spacing: 0 2px; /* Ajuste o valor vertical (segundo valor) 
+    conforme necessário para controlar o espaçamento entre as linhas */
+    width: 96%;
+    margin: 10px auto;
+    
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    
+}
+.edit-field {
+    display: none;
+}
+
+.edit-field input[type="submit"] {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;  
+}
+
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.content {
+    padding: 5px;
+}
+
+
+/* Estilos para a barra de navegação */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive; 
+}
+
+/* Estilos para os contêineres principais, como área de conteúdo e rodapé */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para formulários */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Estilos para botões */
+button, .button {
+    background-color: rgb(132, 31, 158);  
+    color: white;
+    padding: 4px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; 
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+
+.button2 {
+    text-decoration: none;
+    background-color: rgb(4, 142, 52);  
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive; 
+}
+
+
+html {
+    zoom: 100%;
+}
+
+h1 {
+    font-family: "Comic Sans MS", cursive;
+    font-size: 22px;
+    color: rgb(18, 127, 253);
+    text-align: center;
+}
+
+h4 {
+    font-family: "Comic Sans MS", cursive;
+    font-size: 16px;
+    color: rgb(18, 127, 253);
+    text-align: center;
+}
+
+
+
+
+/* CSS DO TRABALHO ANTIGO::after
+
+.caixa{
+    font-family: "Comic Sans MS", cursive;
+    background-color: rgb(132, 31, 158);
+    width: fit-content;
+    border: outset;
+    text-align-last: justify; 
+    padding:40px;    
+}
+
+.caixa2{
+    font-family: "Comic Sans MS", cursive;
+    background-color: rgb(132, 31, 158);
+    width: fit-content;
+    border: outset;
+    padding:40px;   
+    text-align-last: center;  
+
+}
+
+table{
+    padding-top: 2%;
+    border-collapse: separate;
+    border-spacing: 0 3px; 
+    
+    
+ }
+
+
+.option button, .option input, button{
+    font-family: "Comic Sans MS", cursive;
+    color: rgb(132, 31, 158); 
+    font-weight: bold; 
+    font-size: 20px;
+    text-align-last: auto;
+    width: 120px;
+    height: 36px;
+    border-radius: 14px;
+    background-color: rgb(19, 161, 45);
+}
+
+
+.Cabecalho {
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(132, 31, 158);    
+}
+
+h1{
+    font-family: "Comic Sans MS", cursive; 
+    font-size: 40px;
+    color: rgb(19, 161, 45);
+    text-align: center;
+}
+
+
+.Formulario{
+    display: flex;
+    justify-content: center; 
+    font-family: "Comic Sans MS", cursive; 
+    font-size: 16px;   
+}
+
+
+.Rodapé {
+    font-family: "Comic Sans MS", cursive; 
+    font-weight: bold; 
+    font-size: 18px;
+    display: flex;
+    background-color:  rgb(132, 31, 158); 
+    position: absolute;
+    top: 96%;
+    left: 1%;
+    right: 1%;
+}
+
+
+.form-label {
+    font-family: "Comic Sans MS", cursive;
+    color: rgb(16, 16, 31); 
+    font-weight: bold; 
+    font-size: 20px; 
+    /*margin-bottom: 10px; /
+}
+
+
+.form-input {
+    font-family: "Comic Sans MS", cursive;
+    font-size: 16px;
+    
+    min-width: 100px;
+    max-width: 100%; 
+}
+
+html {
+    zoom: 55%;
+}
+
+
+body {
+    max-height: 95vh;
+    overflow-y: auto;  
+    font-family: "Comic Sans MS", cursive;
+}
+
+input[type="number"] { 
+    width: 200px; 
+    text-align: center; 
+}
+
+
+
+.crowdfunding-box {
+    background-color: rgb(132, 31, 158);
+    width: fit-content;
+    border: outset;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.crowdfunding-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Comic Sans MS", cursive;
+    background-color: rgb(132, 31, 158);
+    width: fit-content;
+    border: outset;
+    padding:40px;
+    
+}
+
+
+.crowdfunding-table th, .crowdfunding-table td {
+    padding: 15px;
+    border: 1px solid rgb(16, 16, 31);
+    text-align: left;
+    font-size: 24px;
+}
+
+.crowdfunding-input {
+    font-family: "Comic Sans MS", cursive;
+    font-size: 20px;
+    width: 150px; 
+    height: 40px; 
+    text-align: left !important;
+}
+
+.crowdfunding-submit {
+    font-weight: bold;
+    font-size: 20px;
+    width: 120px;
+    height: 36px;
+    border-radius: 14px;
+    background-color: rgb(19, 161, 45);
+    color: white;
+    cursor: pointer;
+}
+
+.crowdfunding-header {
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(132, 31, 158);
+} */
+
+
