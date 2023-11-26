@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS crowdfunding_db;
 USE crowdfunding_db;
 
 -- Tabela de Usuários
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS users ( 
     id_user INT NOT NULL AUTO_INCREMENT,        -- Identificador único para cada usuário (chave primária).
     username VARCHAR(255) NOT NULL,             -- Nome de usuário do usuário.
     email VARCHAR(255) NOT NULL,                -- Endereço de e-mail do usuário.
