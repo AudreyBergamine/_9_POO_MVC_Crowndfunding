@@ -129,7 +129,7 @@ $total = 0;
 
     <center>
         <div style="text-align: center; margin-top: 20px;">
-            <a href="/_9_POO_MVC_Crowndfunding/views/user/dashboard.php" class="button">Investir</a>
+        <a href="#" class="button" onclick="investir(<?php echo $project->getId(); ?>)">Investir</a>
         </div><br>
     </center>
 
@@ -143,55 +143,83 @@ $total = 0;
 
     <script>      
 
-        // Função para atualizar o valor Total (Soma de todo os investimentos)
+                    
+        // Função para validar se o valor é um número não negativo
+        function isNumberNonNegative(value) {
+            // Substitui valores nulos, vazios ou não numéricos por 0
+            value = isNaN(value) || value === null || value === '' ? 0 : parseFloat(value);
+
+            // Verifica se o valor é um número não negativo
+            return !isNaN(value) && value >= 0;
+        }
+
+
+        // Função para validar se o valor é um número positivo
+        function isNumberPositive(value) {
+            // Converte o valor para número
+            value = parseFloat(value);
+
+            // Verifica se o valor não é nulo e se é um número positivo
+            return !isNaN(value) && value > 0;
+        }
+
+
+        // Função para atualizar o valor Total (Soma de todos os investimentos)
         function atualizar(investmentValue, id) {
             let total = 0.0;
             var i = 1;
             while(true){
                 var elemento = document.getElementById("investmentValue"+i);
                 if(!elemento) break;              
-                if(elemento.value.length>0) total+=parseFloat(elemento.value);
+                if(elemento.value.length > 0 && isNumberNonNegative(elemento.value)) {
+                    total += parseFloat(elemento.value);
+                } 
                 i++;
             }
-            // Atualiza a exibição do total
-            document.getElementById('valorTotal').innerText = "TOTAL: R$ " + total.toFixed(2);
+            // Verifica se total é um número válido antes de chamar toLocaleString
+            if (!isNaN(total)) {
+                // Formata o número para exibição
+                let formattedTotal = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                // Atualiza a exibição do total
+                document.getElementById('valorTotal').innerText = "TOTAL: " + formattedTotal;
+            } else {
+                // Caso o total não seja um número válido, exibe uma mensagem de erro
+                document.getElementById('valorTotal').innerText = "TOTAL: Erro no cálculo";
+            }
         }
 
-        // Função para atualizar o valor captado do projeto no banco de dados
-        // Ao clicar em investir > Atualizar valores na coluna valor captado
-        function investir(id) {
-            // Obtém o valor do investimento
-            var investmentValue = parseFloat(document.getElementById("investmentValue" + id).value);
-            atualizarValorCaptado(id, investmentValue);
-    }
+
+
+
 
         // Função para atualizar o valor captado no banco de dados
-        // function atualizarValorCaptado(id, investmentValue) {
-        //     fetch('/caminho-para-seu-backend/atualizar-valor-captado.php', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             id: id,
-        //             investmentValue: investmentValue,
-        //         }),
-        //     })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Se tudo correr bem, atualize o valor na interface do usuário
-        //             if (data.success) {
-        //                 // Atualiza o valor captado na célula correspondente na tabela
-        //                 document.getElementById("valorCaptado" + id).innerText = "R$ " + data.newRaisedAmount.toFixed(2);
-        //             } else {
-        //                 // Exibe uma mensagem de erro se a atualização falhar
-        //                 alert("Erro ao atualizar o valor captado: " + data.message);
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             console.error('Erro ao atualizar o valor captado:', error);
-        //         });
-        // }
+        function atualizarValorCaptado(idProjeto, investmentValue) {
+            // Criando um objeto Project com o ID do projeto
+            var projectDAO = new ProjectsDAO();
+            var project = projectDAO.findById(idProjeto);
+
+            if (project) {
+                // Atualizando os valores de raised_amount no objeto Project
+                var raisedAmountAtual = project.getRaisedAmount();
+                var raisedAmountNovo = raisedAmountAtual + investmentValue;
+                project.setRaisedAmount(raisedAmountNovo);
+
+                // Chamando a função updateRaisedAmount para atualizar no banco de dados
+                var atualizacaoBemSucedida = projectDAO.updateRaisedAmount(project);
+
+                if (atualizacaoBemSucedida === true) {
+                    alert("Valor captado atualizado com sucesso!");
+                    // Recarregando a página após a atualização
+                    location.reload();
+                } else {
+                    alert("Erro ao atualizar valor captado: " + atualizacaoBemSucedida);
+                }
+            } else {
+                alert("Projeto não encontrado.");
+            }
+        }
+
+        
     </script>
 </body>
 

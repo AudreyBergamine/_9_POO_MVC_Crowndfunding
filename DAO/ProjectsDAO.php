@@ -110,7 +110,7 @@ class ProjectsDAO {
 
 
 
-    // UPDATE
+    // UPDATE PROJETO COMPLETO
     function editProject(Project $project) {
         $connection = dbCon::getConnection();
 
@@ -144,7 +144,57 @@ class ProjectsDAO {
         }    
         return false;
     }
-    
+
+
+// UPDATE RAISE AMOUNT E COMPLETION PERCENTAGE
+public function updateRaisedAmount(Project $project) {
+    $connection = dbCon::getConnection();
+
+    if ($connection != null) {
+        $projectId = $project->getId();
+        $raisedAmount = $project->getRaisedAmount();
+
+        // Atualiza raised_amount no banco de dados
+        $pstm = $connection->prepare("UPDATE projects SET raised_amount=? WHERE id_project=?");
+
+        if ($pstm) {
+            $pstm->bind_param("di", $raisedAmount, $projectId);
+            $success = $pstm->execute();
+
+            if ($success) {
+                // Recalcula e atualiza completion_percentage no banco de dados
+                $financialGoal = $project->getFinancialGoal();
+                $completionPercentage = ($raisedAmount / $financialGoal) * 100;
+
+                $pstmCompletion = $connection->prepare("UPDATE projects SET completion_percentage=? WHERE id_project=?");
+                if ($pstmCompletion) {
+                    $pstmCompletion->bind_param("di", $completionPercentage, $projectId);
+                    $successCompletion = $pstmCompletion->execute();
+
+                    if ($successCompletion) {
+                        $pstmCompletion->close();
+                        $pstm->close();
+                        return true;
+                    } else {
+                        $errorCompletion = $pstmCompletion->error;
+                        $pstmCompletion->close();
+                        return "Erro ao atualizar completion_percentage do projeto: " . $errorCompletion;
+                    }
+                } else {
+                    return "Erro na preparação da declaração (completion_percentage): " . $connection->error;
+                }
+            } else {
+                $error = $pstm->error;
+                $pstm->close();
+                return "Erro ao atualizar raised_amount do projeto: " . $error;
+            }
+        } else {
+            return "Erro na preparação da declaração (raised_amount): " . $connection->error;
+        }
+    }
+
+    return false;
+}
 
 
 
@@ -172,4 +222,15 @@ class ProjectsDAO {
     }
 
 }
+
+
+
+/*
+Formato da Data:
+
+Ao exibir a data, você pode querer formatá-la para uma apresentação mais amigável. 
+Você pode usar a função date em PHP ou, se preferir, formatar a data diretamente no SQL 
+usando a função DATE_FORMAT durante a seleção.
+
+*/
 ?>

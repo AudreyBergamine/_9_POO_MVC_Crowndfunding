@@ -1,7 +1,7 @@
 <!-- Data Access Object -->
 <!-- Acesso ás contribuições no banco de dados  -->
 
-<!-- Cada Projeto vai ter suas contribuições - Criar pelo menos 2 pra cada, com usuários diferentes-->
+<!-- TODO: Audrey: Cada Projeto vai ter suas contribuições - Criar pelo menos 2 pra cada, com usuários diferentes-->
 <?php
 include_once("../config/db.php");
 include_once("../models/Contribution.php");

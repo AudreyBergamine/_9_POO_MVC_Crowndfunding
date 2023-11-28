@@ -29,10 +29,9 @@
     - Investir
         (✓) listProjects 
         (✓) Soma de Todos os Valores ( Valor Total) 
-
         
-        
-        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PAREI AQUI <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        ( ) Atualizar Raised Amount  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PAREI AQUI <<<<<<<<<<<<<<<<<<
+        ( ) Atualizar completion_percentage
         ( ) process_invest              
         ( ) process_registration (Registrar na Tabela Contribuições)
         
