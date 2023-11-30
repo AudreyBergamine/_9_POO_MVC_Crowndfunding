@@ -1,46 +1,80 @@
 <?php
-session_start();
 
+include_once(__DIR__ . "./../../config/db.php");
+include_once(__DIR__ . "./../../models/Project.php");
+include_once(__DIR__ . "./../../DAO/ProjectsDAO.php");
+
+// Verifica se é uma requisição POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["investmentValue"]) && isset($_POST["project_id"])) {
-        $investmentValue = floatval($_POST["investmentValue"]);
-        $projectId = intval($_POST["project_id"]);
+    // Verifica se a ação é investir
+    if ($_POST["action"] === "invest") {
+        // Inicializa o array de resposta
+        $response = ["message" => ""];
 
-        include_once(__DIR__ . "/../models/Project.php");
-        include_once(__DIR__ . "/../../DAO/ProjectsDAO.php");
-
+        // Inicializa o DAO de projetos
         $projectsDAO = new ProjectsDAO();
-        $project = $projectsDAO->findById($projectId);
 
-        if ($project) {
-            // Atualiza os valores no objeto do projeto
-            $project->setRaisedAmount($project->getRaisedAmount() + $investmentValue);
+        // Loop através dos valores de investimento
+        foreach ($_POST as $projectId => $investmentValue) {
+            // Obtém o projeto pelo ID
+            $project = $projectsDAO->findById($projectId);
 
-            // Recalcula a porcentagem de conclusão
-            $completionPercentage = ($project->getRaisedAmount() / $project->getFinancialGoal()) * 100;
-            $project->setCompletionPercentage($completionPercentage);
+            $investmentValue = doubleval($investmentValue);
 
-            // Atualiza o projeto no banco de dados
-            $success = $projectsDAO->editProject($project);
+            if ($project) {
+                // Atualiza os valores no objeto do projeto
+                $project->setRaisedAmount($project->getRaisedAmount() + $investmentValue);
+                
+                
+                // Recalcula a porcentagem de conclusão
+                
+                $raizedAmount = $project->getRaisedAmount();
+                $financialGoal = $project->getFinancialGoal();
+                
+                $soma = $raizedAmount + $investmentValue;
 
-            if ($success === true) {                 
-                // Redireciona para a página de projetos após o sucesso
-                $successMessage = "Projeto cadastrado com sucesso!";
-                echo '<script>';
-                echo 'alert("' . $successMessage . '");';
-                echo 'window.location.href = "/_9_POO_MVC_Crowndfunding/views/creator/listProjects.php";';
-                echo '</script>';
-                exit(); 
+                
+                if ($raizedAmount > 0 && $soma <= $financialGoal) {
+
+                    if (!isset($_SESSION['user_id'])) {
+                        session_start();
+                        $user_id = $_SESSION['user_id'];
+                    } else {
+                        $user_id = $_SESSION['user_id'];
+                    }
+
+                    // TODO: Criar a lógica para salvar no banco Chamando o addContribution();
+                    // data atual: $dataAtual = date("Y-m-d");
+
+                    $completionPercentage = ($raizedAmount / $financialGoal) * 100;
+                    $project->setCompletionPercentage($completionPercentage);
+                   
+                }
+               
+
+                // Atualiza o projeto no banco de dados
+                $success = $projectsDAO->updateRaisedAmount($project);
+
+                if (!$success) {
+                    $response["message"] .= "Erro ao registrar o investimento para o projeto com ID $projectId. ";
+                }
             } else {
-                echo "Erro ao cadastrar o projeto.";
+                $response["message"] .= "Projeto com ID $projectId não encontrado. ";
             }
-        } else {
-            echo "Projeto não encontrado.";
         }
+
+        // Resposta para o frontend
+        echo json_encode($response);
     } else {
-        echo "Parâmetros inválidos.";
+        // Lógica para outros tipos de ação, se necessário
+        echo "Ação desconhecida.";
     }
 } else {
     echo "Método de requisição inválido.";
 }
+
 ?>
+
+<script>
+    window.location.href = '/_9_POO_MVC_Crowndfunding/views/user/dashboard.php';
+</script>

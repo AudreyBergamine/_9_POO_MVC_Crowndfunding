@@ -33,17 +33,20 @@ CREATE TABLE IF NOT EXISTS projects (
 
 -- Tabela de Contribuições
 CREATE TABLE IF NOT EXISTS contributions (
-    id_contribuicao INT NOT NULL AUTO_INCREMENT,        -- Identificador único para cada contribuição (chave primária).
+    id_contribuicao INT NOT NULL AUTO_INCREMENT,        -- Identificador único (chave primária).
     contribution_date DATE NOT NULL,                    -- Data em que a contribuição foi feita.
     amount DECIMAL(10, 2) NOT NULL,                     -- Valor da contribuição.
-    selected_reward VARCHAR(255),                       -- Recompensa selecionada pelo apoiador.
-    id_user INT NOT NULL,                               -- ID do apoiador que fez a contribuição (chave estrangeira referenciando `users`).
-    id_project INT NOT NULL,                            -- ID do projeto que recebeu a contribuição (chave estrangeira referenciando `projects`).
+    selected_reward VARCHAR(255),                       -- Rentabilidade selecionada pelo apoiador.
+    id_user INT NOT NULL,                               -- ID do apoiador (chave estrangeira `users`).
+    id_project INT NOT NULL,                            -- ID do projeto (chave estrangeira `projects`).
     PRIMARY KEY (id_contribuicao),
     FOREIGN KEY (id_user) REFERENCES users(id_user),
     FOREIGN KEY (id_project) REFERENCES projects(id_project)
 );
 
+
+
+-- FUTURA IMPLEMENTAÇÃO > EXTRATO DE RENDIMENTOS (LUCROS RECEBIDOS)
 -- -- Tabela de Recompensas
 -- CREATE TABLE IF NOT EXISTS rewards (
 --     id_rewards INT NOT NULL AUTO_INCREMENT,          -- Identificador único para cada recompensa (chave primária).

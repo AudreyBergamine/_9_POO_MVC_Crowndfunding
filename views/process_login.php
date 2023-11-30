@@ -10,6 +10,10 @@ $userdao = new UserDAO();
 
 $user = $userdao->findByEmailAndPassword($email, $password);
 
+session_start();
+
+$_SESSION['user_id'] = $user->getId();
+
 if(empty($user)){
     echo "USUARIO VAZIO";
 }else{

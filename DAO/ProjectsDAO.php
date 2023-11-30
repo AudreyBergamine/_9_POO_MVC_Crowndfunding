@@ -146,55 +146,53 @@ class ProjectsDAO {
     }
 
 
-// UPDATE RAISE AMOUNT E COMPLETION PERCENTAGE
-public function updateRaisedAmount(Project $project) {
-    $connection = dbCon::getConnection();
+    // Função genérica para executar atualizações no banco de dados
+    public function updateDatabase($connection, $query, $params) {
+        $stmt = $connection->prepare($query);
 
-    if ($connection != null) {
-        $projectId = $project->getId();
-        $raisedAmount = $project->getRaisedAmount();
+        if ($stmt) {
+            $stmt->bind_param(...$params);
+            $success = $stmt->execute();
+            $stmt->close();
 
-        // Atualiza raised_amount no banco de dados
-        $pstm = $connection->prepare("UPDATE projects SET raised_amount=? WHERE id_project=?");
-
-        if ($pstm) {
-            $pstm->bind_param("di", $raisedAmount, $projectId);
-            $success = $pstm->execute();
-
-            if ($success) {
-                // Recalcula e atualiza completion_percentage no banco de dados
-                $financialGoal = $project->getFinancialGoal();
-                $completionPercentage = ($raisedAmount / $financialGoal) * 100;
-
-                $pstmCompletion = $connection->prepare("UPDATE projects SET completion_percentage=? WHERE id_project=?");
-                if ($pstmCompletion) {
-                    $pstmCompletion->bind_param("di", $completionPercentage, $projectId);
-                    $successCompletion = $pstmCompletion->execute();
-
-                    if ($successCompletion) {
-                        $pstmCompletion->close();
-                        $pstm->close();
-                        return true;
-                    } else {
-                        $errorCompletion = $pstmCompletion->error;
-                        $pstmCompletion->close();
-                        return "Erro ao atualizar completion_percentage do projeto: " . $errorCompletion;
-                    }
-                } else {
-                    return "Erro na preparação da declaração (completion_percentage): " . $connection->error;
-                }
-            } else {
-                $error = $pstm->error;
-                $pstm->close();
-                return "Erro ao atualizar raised_amount do projeto: " . $error;
-            }
+            return $success;
         } else {
-            return "Erro na preparação da declaração (raised_amount): " . $connection->error;
+            return "Erro na preparação da declaração: " . $connection->error;
         }
     }
 
-    return false;
-}
+    // Atualização do Raised Amount e Completion Percentage
+    public function updateRaisedAmount(Project $project) {
+        $connection = dbCon::getConnection();
+
+        if ($connection != null) {
+            $projectId = $project->getId();
+            $raisedAmount = $project->getRaisedAmount();
+            $financialGoal = $project->getFinancialGoal();
+
+            // Atualiza raised_amount
+            $query1 = "UPDATE projects SET raised_amount=? WHERE id_project=?";
+            $params1 = ["di", $raisedAmount, $projectId];
+            $this->updateDatabase($connection, $query1, $params1);
+
+            // Atualiza completion_percentage
+            $query2 = "UPDATE projects SET completion_percentage=(raised_amount / ?) * 100 WHERE id_project=?";
+            $params2 = ["di", $financialGoal, $projectId];
+            $this->updateDatabase($connection, $query2, $params2);
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -220,7 +218,7 @@ public function updateRaisedAmount(Project $project) {
         }
         return false;
     }
-
+ 
 }
 
 
