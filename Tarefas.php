@@ -15,13 +15,28 @@
         ( ) Extract Project (Extrato de Contribuições)
 
 
+    - Gerenciar Contribuição
+        ( ) Create Contribution  (Adicionar) 
+        ( ) Read Contribution    (Ler)
+        ( ) Update Contribution  (Editar)
+        ( ) Delete Contribution  (Excluir)
+        ( ) Extract Contribution (Extrato de Contribuições)
+
+
+
     *************************** Page Creator ***************************
     - Gerenciar Projetos
         (✓) Create Project  (Adicionar) 
         (✓) Read Project    (Ler)
         (✓) Update Project  (Editar)
         (✓) Delete Project  (Excluir)
-        ( ) Extract Project (Extrato de Contribuições)
+
+    - Gerenciar Contribuição
+        ( ) Create Contribution  (Adicionar) 
+        ( ) Read Contribution    (Ler)
+        ( ) Update Contribution  (Editar)
+        ( ) Delete Contribution  (Excluir)
+        ( ) Extract Contribution (Extrato de Contribuições)
 
 
 
