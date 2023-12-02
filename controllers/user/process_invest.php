@@ -27,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $project->setRaisedAmount($project->getRaisedAmount() + $investmentValue);
                 
                 
-                // Recalcula a porcentagem de conclusão
-                
+                // Recalcula a porcentagem de conclusão                
                 $raizedAmount = $project->getRaisedAmount();
                 $financialGoal = $project->getFinancialGoal();
                 
@@ -44,8 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $user_id = $_SESSION['user_id'];
                     }
 
-                    // TODO: Criar a lógica para salvar no banco Chamando o addContribution();
-                    // data atual: $dataAtual = date("Y-m-d");
+
 
                     $completionPercentage = ($raizedAmount / $financialGoal) * 100;
                     $project->setCompletionPercentage($completionPercentage);

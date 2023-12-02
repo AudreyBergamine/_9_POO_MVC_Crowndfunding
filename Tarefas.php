@@ -40,6 +40,7 @@
         ( ) process_registration (Registrar na Tabela Contribuições)        
         ( ) Cada Projeto vai ter suas contribuições - Criar pelo menos 2 pra cada, com usuários diferentes
         
+        // data atual: $dataAtual = date("Y-m-d");
         
         
 
@@ -48,7 +49,9 @@
     *************************** Corrrigir Erros ***
     - Correções
         (✓) Login-out -> Login-in   (Sair de um login e entrar em outro está dando erro)
-  
+    
+
+                    
                 
 
 
