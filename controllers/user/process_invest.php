@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Resposta para o frontend
-        echo json_encode($response);
+        echo $response["message"];
     } else {
         // Lógica para outros tipos de ação, se necessário
         echo "Ação desconhecida.";
