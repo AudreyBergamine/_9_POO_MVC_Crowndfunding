@@ -1,7 +1,6 @@
 <!-- Data Access Object -->
 <!-- Acesso ás contribuições no banco de dados  -->
 
-<!-- TODO: Audrey: Cada Projeto vai ter suas contribuições - Criar pelo menos 2 pra cada, com usuários diferentes-->
 <?php
 include_once("../config/db.php");
 include_once("/ProjectsDAO.php");
@@ -29,9 +28,41 @@ class ContributionDAO
         return $entidades;
     }
 
-    public function addContribution($contribuition) {
-        // TODO: Fazer a Lógica
+    public function addContribution(Contribution $contribution) {
+        $connection = dbCon::getConnection();
+    
+        if ($connection != null) {
+            $contributionDate = $contribution->getContributionDate();
+            $amount = $contribution->getAmount();
+            $id_user = $contribution->getIdUser();
+            $id_project = $contribution->getIdProject();
+    
+            $query = "INSERT INTO contributions 
+                (contribution_date, amount, id_user, id_project) 
+                VALUES (?, ?, ?, ?)";
+    
+            $stmt = $connection->prepare($query);
+    
+            if ($stmt) {
+                $stmt->bind_param(
+                    "sddd",
+                    $contributionDate,
+                    $amount,
+                    $id_user,
+                    $id_project
+                );
+    
+                $success = $stmt->execute();    
+                $stmt->close();
+            } else {
+                echo "Erro na preparação da declaração: " . $connection->error;
+            }    
+            mysqli_close($connection);    
+            return $success;
+        }    
+        return false;
     }
+    
 
 
 

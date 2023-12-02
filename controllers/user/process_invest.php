@@ -3,6 +3,7 @@
 include_once(__DIR__ . "./../../config/db.php");
 include_once(__DIR__ . "./../../models/Project.php");
 include_once(__DIR__ . "./../../DAO/ProjectsDAO.php");
+include_once(__DIR__ . "./../../DAO/ContributionDAO.php");
 
 // Verifica se é uma requisição POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

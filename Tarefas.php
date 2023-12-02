@@ -28,12 +28,17 @@
     *************************** Page User *************************** 
     - Investir
         (✓) listProjects 
-        (✓) Soma de Todos os Valores ( Valor Total) 
-        
-        ( ) Atualizar Raised Amount  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PAREI AQUI <<<<<<<<<<<<<<<<<<
+        (✓) Soma de Todos os Valores ( Valor Total)         
+        (✓) Atualizar Raised Amount  
+
+
+        Começou a dar erro: 
         ( ) Atualizar completion_percentage
-        ( ) process_invest              
-        ( ) process_registration (Registrar na Tabela Contribuições)
+
+
+        TODO:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PAREI AQUI <<<<<<<<<<<<<<<<<<            
+        ( ) process_registration (Registrar na Tabela Contribuições)        
+        ( ) Cada Projeto vai ter suas contribuições - Criar pelo menos 2 pra cada, com usuários diferentes
         
         
         
