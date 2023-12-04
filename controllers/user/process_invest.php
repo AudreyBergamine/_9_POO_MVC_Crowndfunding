@@ -4,6 +4,9 @@ include_once(__DIR__ . "./../../config/db.php");
 include_once(__DIR__ . "./../../models/Project.php");
 include_once(__DIR__ . "./../../DAO/ProjectsDAO.php");
 include_once(__DIR__ . "./../../DAO/ContributionDAO.php");
+include_once(__DIR__ . "./../../models/Contribution.php");
+
+
 
 // Verifica se é uma requisição POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -22,14 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $investmentValue = doubleval($investmentValue);
 
-            if ($project) {
+            if ($project && $investmentValue > 0) {
                 // Atualiza os valores no objeto do projeto
                 $project->setRaisedAmount($project->getRaisedAmount() + $investmentValue);
                 
                 
                 // Recalcula a porcentagem de conclusão                
-                $raizedAmount = $project->getRaisedAmount();
-                $financialGoal = $project->getFinancialGoal();
+                $raizedAmount = doubleval($project->getRaisedAmount());
+                $financialGoal =  doubleval($project->getFinancialGoal());
                 
                 $soma = $raizedAmount + $investmentValue;
 
@@ -43,19 +46,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $user_id = $_SESSION['user_id'];
                     }
 
-
-
                     $completionPercentage = ($raizedAmount / $financialGoal) * 100;
+                    
+                    
+                    
                     $project->setCompletionPercentage($completionPercentage);
-                   
-                }
-               
+                                    
+                    // Atualiza o projeto no banco de dados
+                    $success = $projectsDAO->updateRaisedAmount($project);
 
-                // Atualiza o projeto no banco de dados
-                $success = $projectsDAO->updateRaisedAmount($project);
 
-                if (!$success) {
-                    $response["message"] .= "Erro ao registrar o investimento para o projeto com ID $projectId. ";
+                    $contribuition = new Contribution([
+                        "0" => null,
+                        "1" => date("Y-m-d"),
+                        "2" => $investmentValue,
+                        "3" => $user_id,
+                        "4" => $projectId
+                    ]);
+                    
+                    $contributionsDAO = new ContributionDAO();
+                    $contributionsDAO->addContribution($contribuition);
+
+                    if (!$success) {
+                        $response["message"] .= "Erro ao registrar o investimento para o projeto com ID $projectId. ";
+                    }
                 }
             } else {
                 $response["message"] .= "Projeto com ID $projectId não encontrado. ";

@@ -25,7 +25,7 @@ include_once(__DIR__ . "/../../header.php");
             <div class="dashboard" style="text-align: center; margin-top: 0px;"> 
                 <a class="box" id="users" href="listUsers.php">Gerenciar Usuários</a>
                 <a class="box" id="projects" href="listProjects.php">Gerenciar Projetos</a>
-                <a class="box" id="contributions" href="contributions.php">Gerenciar Contribuições</a>
+                <a class="box" id="contributions" href="contributions.php">Extrato de Contribuições</a>
                 <a class="box" id="novaFuncao" href="novaFuncao.php">Em Implementação</a>
             </div>
         </div>

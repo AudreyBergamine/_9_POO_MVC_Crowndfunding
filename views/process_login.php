@@ -27,7 +27,7 @@ if(empty($user)){
             break;
         case 'creator':
             // Direcionar usando Javascript para /creator/dashboard
-            echo "<script> window.location.href= 'creator/listProjects.php'</script>";
+            echo "<script> window.location.href= 'creator/listarProjects.php'</script>";
             # code...
             break;
         case 'user':

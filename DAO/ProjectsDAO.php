@@ -15,7 +15,7 @@ class ProjectsDAO {
             while ($row = mysqli_fetch_array($result)) {
                 array_push($projects, new Project($row));
             }
-            mysqli_close($connection);
+            // mysqli_close($connection);
         }
         return $projects;
     }
@@ -150,6 +150,10 @@ class ProjectsDAO {
     public function updateDatabase($connection, $query, $params) {
         $stmt = $connection->prepare($query);
 
+        var_dump($query);
+        var_dump($params);
+        var_dump($stmt);
+
         if ($stmt) {
             $stmt->bind_param(...$params);
             $success = $stmt->execute();
@@ -168,7 +172,7 @@ class ProjectsDAO {
         if ($connection != null) {
             $projectId = $project->getId();
             $raisedAmount = $project->getRaisedAmount();
-            $financialGoal = $project->getFinancialGoal();
+            $Percentage = $project->getCompletionPercentage();
 
             // Atualiza raised_amount
             $query1 = "UPDATE projects SET raised_amount=? WHERE id_project=?";
@@ -176,11 +180,10 @@ class ProjectsDAO {
             $this->updateDatabase($connection, $query1, $params1);
 
             // Atualiza completion_percentage
-            $query2 = "UPDATE projects SET completion_percentage=(raised_amount / ?) * 100 WHERE id_project=?";
-            $params2 = ["di", $financialGoal, $projectId];
+            $query2 = "UPDATE projects SET completion_percentage=(?) WHERE id_project=?";
+            $params2 = ["di", $Percentage, $projectId];
             $this->updateDatabase($connection, $query2, $params2);
         }
-
         return false;
     }
 

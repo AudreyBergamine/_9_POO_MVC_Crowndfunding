@@ -41,5 +41,17 @@ class Contribution {
     public function setIdContribuicao($id) {
         $this->id_contribuicao = $id;
     }
+
+    public function getUser() {
+        $userDAO = new UserDAO();
+        return $userDAO->findById($this->id_user);
+        
+    }
+    public function getProject() {
+        $projectDAO = new ProjectsDAO();
+        return $projectDAO->findById($this->id_project);
+        
+    }
+
 }
 

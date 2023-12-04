@@ -1,23 +1,10 @@
 <!-- views/admin/contributions.php -->
-
-<?php
-echo " Em implementação !!!"; exit;
-?>
-
-
-
-
-
-
-
-
-
-
     <!--  CÓDIGO COM ERRO -->
 <?php
+include_once(__DIR__ . "/../../header.php");
 include_once(__DIR__ . "/../../config/db.php");
 
-// include_once(__DIR__ . "/../../DAO/Contribution.php");
+include_once(__DIR__ . "/../../DAO/ContributionDAO.php");
 include_once(__DIR__ . "/../../DAO/ProjectsDAO.php");
 include_once(__DIR__ . "/../../DAO/UserDAO.php");
 
@@ -35,6 +22,7 @@ $projects = $projectsDAO->findAll();
 
 $contributionsDAO = new ContributionDAO();
 $contributions = $contributionsDAO->findAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -100,8 +88,8 @@ $contributions = $contributionsDAO->findAll();
                     <th>ID</th>
                     <th>Data da Contribuição</th>
                     <th>Valor</th>
-                    <th>ID do Usuário</th>
-                    <th>ID do Projeto</th>
+                    <th>Usuário</th>
+                    <th>Projeto</th>
                 </tr>
             </thead>
             <tbody>
@@ -110,8 +98,8 @@ $contributions = $contributionsDAO->findAll();
                     <td><?php echo $contribution->getIdContribuicao(); ?></td>
                     <td><?php echo $contribution->getContributionDate(); ?></td>
                     <td><?php echo $contribution->getAmount(); ?></td>
-                    <td><?php echo $contribution->getIdUser(); ?></td>
-                    <td><?php echo $contribution->getIdProject(); ?></td>
+                    <td><?php echo $contribution->getUser()->getName(); ?></td>
+                    <td><?php echo $contribution->getProject()->getName(); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -127,12 +115,12 @@ $contributions = $contributionsDAO->findAll();
     <?php include_once(__DIR__ . "/../../footer.php"); ?>
 
     <script>
-        // Função para exibir e ocultar os campos de cadastro ao clicar no botão
-        function toggleCamposCadastro() {
-            var camposCadastro = document.getElementById('camposCadastro');
-            camposCadastro.style.display = (camposCadastro.style.display === 'none' || camposCadastro.style.display === '') ? 'block' : 'none';
-            document.getElementById('addContributionButton').style.display = 'none';
-        }
+        // // Função para exibir e ocultar os campos de cadastro ao clicar no botão
+        // function toggleCamposCadastro() {
+        //     var camposCadastro = document.getElementById('camposCadastro');
+        //     camposCadastro.style.display = (camposCadastro.style.display === 'none' || camposCadastro.style.display === '') ? 'block' : 'none';
+        //     document.getElementById('addContributionButton').style.display = 'none';
+        // }
     </script>
 </body>
 

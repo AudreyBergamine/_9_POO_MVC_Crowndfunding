@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS projects (
     deadline DATE NOT NULL,                         -- Data de prazo final para o projeto.
     financial_goal DECIMAL(10, 2) NOT NULL,         -- Meta financeira estabelecida para o projeto.
     raised_amount DECIMAL(10, 2) DEFAULT 0,         -- Valor captado até o momento (inicializado com 0).
-    completion_percentage DECIMAL(10, 2) DEFAULT 0, -- Percentual de conclusão do projeto (inicializado com 0).
+    completion_percentage FLOAT (10, 2) DEFAULT 0, -- Percentual de conclusão do projeto (inicializado com 0).
     updates TEXT,                                   -- Atualizações do projeto.
     PRIMARY KEY (id_project)
 );

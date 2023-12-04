@@ -18,7 +18,7 @@ include_once(__DIR__ . "/../header.php");
 
 
     <!-- Adicione aqui o formulário de login -->
-    <form action="views/process_login.php" method="post">
+    <form action="/_9_POO_MVC_Crowndfunding/views/process_login.php" method="post">
         <!-- Adicione campos do formulário conforme necessário -->
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" required><br><br>

@@ -14,7 +14,7 @@ include_once("../../header.php");
     <h1>Cadastro de Usuário</h1>
 
     <!-- Formulário de registro -->
-    <form action="process_registration.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
+    <form action="/_9_POO_MVC_Crowndfunding/controllers/user/process_registration.php" method="post" style="max-width: 400px; margin: 0 auto; text-align: left;">
     
         <div style="margin-bottom: 10px;">
             <label for="username" style="padding-right: 20px;">Nome de Usuário:</label>
