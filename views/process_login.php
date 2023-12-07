@@ -1,7 +1,7 @@
 <!-- processamento do login -->
 
 <?php 
-include_once('../DAO/userDAO.php');
+include_once(__DIR__."./../DAO/UserDAO.php");
 
 $email = $_POST["email"];
 $password = $_POST["password"];

@@ -150,10 +150,6 @@ class ProjectsDAO {
     public function updateDatabase($connection, $query, $params) {
         $stmt = $connection->prepare($query);
 
-        var_dump($query);
-        var_dump($params);
-        var_dump($stmt);
-
         if ($stmt) {
             $stmt->bind_param(...$params);
             $success = $stmt->execute();

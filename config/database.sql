@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS contributions (
     id_contribuicao INT NOT NULL AUTO_INCREMENT,        -- Identificador único (chave primária).
     contribution_date DATE NOT NULL,                    -- Data em que a contribuição foi feita.
     amount DECIMAL(10, 2) NOT NULL,                     -- Valor da contribuição.
-    selected_reward VARCHAR(255),                       -- Rentabilidade selecionada pelo apoiador.
     id_user INT NOT NULL,                               -- ID do apoiador (chave estrangeira `users`).
     id_project INT NOT NULL,                            -- ID do projeto (chave estrangeira `projects`).
     PRIMARY KEY (id_contribuicao),

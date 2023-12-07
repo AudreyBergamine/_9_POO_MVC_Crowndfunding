@@ -12,10 +12,7 @@ if (file_exists($projectsDAOPath)) {
 // Verificando se o ID do projeto a ser excluído foi fornecido via parâmetro ou formulário
 $projectIdToDelete = isset($_GET['id_project']) ? $_GET['id_project'] : null;
 
-// var_dump($projectIdToDelete); 
 
-// Adicionando logs para depuração
-// error_log("ID do projeto a ser excluído: " . $projectIdToDelete);
 
 // Se o ID do projeto foi fornecido
 if ($projectIdToDelete) { // d

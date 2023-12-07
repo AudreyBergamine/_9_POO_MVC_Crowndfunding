@@ -27,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '6' => $editedDeadline,
         '7' => $editedFinancialGoal,
     ]);
-    // var_dump($project); exit;
+
 
     $success = $projectsDAO->editProject($project);
 
 
-    // var_dump($success); 
+  
 
 
     if ($success) {

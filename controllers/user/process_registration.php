@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verifique se o usuário já existe no banco de dados
         $userDAO = new UserDAO();
         $existingUser = $userDAO->findByEmailAndPassword($_POST["email"], $_POST["password"]);
-        var_dump($existingUser);
+        
 
         if ($existingUser) {
             // Usuário já existe, exiba uma mensagem de erro ou redirecione para a página de registro
